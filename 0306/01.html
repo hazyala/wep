@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dynamic Content Display</title>
+    <style>
+        .content {
+            display: none;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="content1" class="content">Content 1</div>
+    <div id="content2" class="content">Content 2</div>
+    <div id="content3" class="content">Content 3</div>
+
+    <script>
+        let currentIndex = 0;
+        const contents = document.querySelectorAll('.content');
+
+        function showContent(index) {
+            contents.forEach((content, i) => {
+                content.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function cycleContent() {
+            showContent(currentIndex);
+            currentIndex = (currentIndex + 1) % contents.length;
+        }
+
+        setInterval(cycleContent, 3000);
+        cycleContent(); // Initial call to display the first content
+    </script>
 </body>
 </html>
